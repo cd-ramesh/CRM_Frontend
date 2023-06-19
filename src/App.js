@@ -6,16 +6,19 @@ import Customer from './pages/Customer';
 import Engineer from './pages/Engineer';
 
 function App() {
+
+
+
   return (
     <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Auth/>}/>
-          <Route path="/admin" element={<Admin/>}/>
-          <Route path="/customer" element={<Customer/>}/>
-          <Route path="/engineer" element={<Engineer/>}/>
-        </Routes>
-      </Router>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Auth/>}/>
+            <Route path="/admin" element={<Admin/>}/>
+            <Route path="/customer" element={<Customer/>}/>
+            <Route path="/engineer" element={<Engineer/>}/>
+          </Routes>
+        </Router>
     </div>
   );
 }

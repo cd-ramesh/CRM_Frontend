@@ -14,5 +14,4 @@ const userFields = {
     jwtToken: "jwtToken"
 }
 
-
 module.exports = {userType, userFields};
