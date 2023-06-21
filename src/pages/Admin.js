@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar/sidebar";
 import { userType, userFields }  from "../constant";
 import { getAllTickets } from "../api/Tickets.api";
 import { Cards } from "../components/cards/card";
+import { Table } from "../components/table/table";
 
 
 function Admin(){
@@ -40,6 +41,7 @@ function Admin(){
                 <p className="text-center text-muted">Streamline ticket management and improve customer satisfaction.</p>
                 <Cards tickets={tickets}/>
                 <hr/>
+                <Table tickets={tickets}/>
             </div>
         </div>
     );

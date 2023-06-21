@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar/sidebar";
 import { userType, userFields }  from "../constant";
 import { getAllTickets } from "../api/Tickets.api";
 import { Cards } from "../components/cards/card";
+import { Table } from "../components/table/table";
 
 
 function Customer(){
@@ -39,6 +40,8 @@ function Customer(){
                 <h4 className="text-center">Welcome, {name}!</h4>
                 <p className="text-center text-muted">Raise tickets, monitor their progress, and stay updated on the status of your inquiries or reported problems.</p>
                 <Cards tickets={tickets}/>
+                <hr/>
+                <Table tickets={tickets}/>
             </div>
         </div>
     );

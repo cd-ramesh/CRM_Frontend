@@ -14,4 +14,11 @@ const userFields = {
     jwtToken: "jwtToken"
 }
 
-module.exports = {userType, userFields};
+const ticketStatus = {
+    open: "OPEN",
+    closed: "CLOSED",
+    inprogress: "INPROGRESS",
+    blocked: "BLOCKED"
+}
+
+module.exports = {userType, userFields, ticketStatus};
