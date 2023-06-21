@@ -3,8 +3,9 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter, selectFilter } from 'react-bootstrap-table2-filter';
 import { ticketStatus } from "../../constant";
 
+
 export function Table(props){
-    const {tickets} = props;
+    const {tickets, rowEvents} = props;
 
     const selectOptions = {
         OPEN: ticketStatus.open,
@@ -45,7 +46,8 @@ export function Table(props){
             data={tickets} 
             columns={columns} 
             pagination={pagination} 
-            filter={filterFactory()}/>
+            filter={filterFactory()}
+            rowEvents={rowEvents}/>
         </div>
     );
 } 

@@ -1,17 +1,52 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar/sidebar";
 import { userType, userFields }  from "../constant";
-import { getAllTickets } from "../api/Tickets.api";
+import { getAllTickets, updateTicketById } from "../api/Tickets.api";
 import { Cards } from "../components/cards/card";
 import { Table } from "../components/table/table";
+import { UpdateModal } from "../components/modal/modal";
 
 
 function Admin(){
 
     const [tickets, setTickets] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedTicket, setSelectedTicket] = useState({});
 
     const name = localStorage.getItem(userFields.name);
     const type = localStorage.getItem(userFields.userType);
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex)=>{
+            setShowModal(true);
+            setSelectedTicket(row);
+        }
+    }
+
+    function onUpdateTicket(e){
+        const name = e.target.name;
+        const value = e.target.value;
+        selectedTicket[name] = value;
+        setSelectedTicket({...selectedTicket});
+    }
+
+    function onSaveTicket(e){
+        e.preventDefault();
+        console.log(selectedTicket);
+        updateTicketById(selectedTicket)
+        .then((res)=>{
+            setShowModal(false);
+            window.location.href = "/admin";
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    function closeModal(){
+        setShowModal(false);
+        setSelectedTicket({});
+    }
 
     useEffect(()=>{
         getAllTickets()
@@ -41,7 +76,8 @@ function Admin(){
                 <p className="text-center text-muted">Streamline ticket management and improve customer satisfaction.</p>
                 <Cards tickets={tickets}/>
                 <hr/>
-                <Table tickets={tickets}/>
+                <Table tickets={tickets} rowEvents = {rowEvents}/>
+                <UpdateModal show = {showModal} closeModal = {closeModal} ticket = {selectedTicket} onUpdateTicket = {onUpdateTicket} onSaveTicket = {onSaveTicket}/>
             </div>
         </div>
     );

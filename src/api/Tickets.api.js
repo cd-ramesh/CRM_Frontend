@@ -10,3 +10,12 @@ export async function getAllTickets(){
         },
     });
 }
+
+export async function updateTicketById(ticket){
+    return axios.post(`${BASE_URL}/api/v1/tickets/${ticket._id}`,ticket,{
+        headers:{
+            "Authorization" : localStorage.getItem(userFields.jwtToken)
+        },
+    });
+}
+
