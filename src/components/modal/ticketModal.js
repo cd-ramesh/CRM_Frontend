@@ -1,12 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import './modal.css';
-import { fetchDisabledFields } from '../../utils/fetchDisabledFields';
+import './Modal.css'
+import { fetchDisabledTicketFields } from '../../utils/fetchDisabledFields';
+import { ticketStatus } from '../../constant';
 
 export function UpdateModal(props) {
 
     const ticket = props.ticket;
-    const disabledFields = fetchDisabledFields();
+    const disabledFields = fetchDisabledTicketFields();
 
     return (
         <Modal
@@ -40,8 +41,13 @@ export function UpdateModal(props) {
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Status</span>
-                        <input className="px-2 ip" type="text" name="ticketStatus" disabled={disabledFields.status}
-                        defaultValue={ticket.ticketStatus} autoComplete="off" onChange={props.onUpdateTicket}/>
+                        <select className="form-select" name="ticketStatus" disabled={disabledFields.status} 
+                        value={ticket.ticketStatus} onChange={props.onUpdateTicket}>
+                            <option value={ticketStatus.open}>OPEN</option>
+                            <option value={ticketStatus.closed}>CLOSED</option>
+                            <option value={ticketStatus.inprogress}>INPROGRESS</option>
+                            <option value={ticketStatus.blocked}>BLOCKED</option>
+                        </select>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Description</span>

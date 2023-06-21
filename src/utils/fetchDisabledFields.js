@@ -1,6 +1,6 @@
 import { userFields, userType } from "../constant";
 
-export function fetchDisabledFields(){
+export function fetchDisabledTicketFields(){
     
     const disabledFields = {
         title: false,

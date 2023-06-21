@@ -3,22 +3,30 @@ import Sidebar from "../components/sidebar/sidebar";
 import { userType, userFields }  from "../constant";
 import { getAllTickets, updateTicketById } from "../api/Tickets.api";
 import { Cards } from "../components/cards/card";
-import { Table } from "../components/table/table";
-import { UpdateModal } from "../components/modal/modal";
+import { Table } from "../components/table/ticketsTable";
+import { UpdateModal } from "../components/modal/ticketModal";
+import { getAllUsers, updateUserById } from "../api/Users.api";
+import { UsersTable } from "../components/table/usersTable";
+import { UpdateUserModal } from "../components/modal/userModal";
+
 
 
 function Admin(){
 
     const [tickets, setTickets] = useState([]);
-    const [showModal, setShowModal] = useState(false);
+    const [showTicketModal, setShowTicketModal] = useState(false);
     const [selectedTicket, setSelectedTicket] = useState({});
+
+    const [users, setUsers] = useState([]);
+    const [showUserModal, setShowUserModal] = useState(false);
+    const [selectedUser, setSelectedUser] = useState({});
 
     const name = localStorage.getItem(userFields.name);
     const type = localStorage.getItem(userFields.userType);
 
-    const rowEvents = {
+    const ticketsRowEvents = {
         onClick: (e, row, rowIndex)=>{
-            setShowModal(true);
+            setShowTicketModal(true);
             setSelectedTicket(row);
         }
     }
@@ -35,7 +43,7 @@ function Admin(){
         console.log(selectedTicket);
         updateTicketById(selectedTicket)
         .then((res)=>{
-            setShowModal(false);
+            setShowTicketModal(false);
             window.location.href = "/admin";
         })
         .catch((err)=>{
@@ -43,12 +51,54 @@ function Admin(){
         })
     }
 
-    function closeModal(){
-        setShowModal(false);
+    function closeTicketModal(){
+        setShowTicketModal(false);
         setSelectedTicket({});
     }
 
+    ///////////////////////////////////
+
+    const usersRowEvents = {
+        onClick: (e, row, rowIndex)=>{
+            setShowUserModal(true);
+            setSelectedUser(row);
+        }
+    }
+
+    function onUpdateUser(e){
+        const name = e.target.name;
+        const value = e.target.value;
+        selectedUser[name] = value;
+        setSelectedUser({...selectedUser});
+    }
+
+    function onSaveUser(e){
+        e.preventDefault();
+        console.log(selectedUser);
+        updateUserById(selectedUser)
+        .then((res)=>{
+            setShowUserModal(false);
+            window.location.href = "/admin";
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+    }
+
+    function closeUserModal(){
+        setShowUserModal(false);
+        setSelectedUser({});
+    }
+
     useEffect(()=>{
+        getAllUsers()
+        .then((res)=>{
+            setUsers(res.data);
+        })
+        .catch((err)=>{
+            console.log(err);
+        })
+        
         getAllTickets()
         .then((res)=>{
             setTickets(res.data);
@@ -76,8 +126,11 @@ function Admin(){
                 <p className="text-center text-muted">Streamline ticket management and improve customer satisfaction.</p>
                 <Cards tickets={tickets}/>
                 <hr/>
-                <Table tickets={tickets} rowEvents = {rowEvents}/>
-                <UpdateModal show = {showModal} closeModal = {closeModal} ticket = {selectedTicket} onUpdateTicket = {onUpdateTicket} onSaveTicket = {onSaveTicket}/>
+                <UsersTable users={users} rowEvents = {usersRowEvents}/>
+                <UpdateUserModal show = {showUserModal} closeModal = {closeUserModal} user = {selectedUser} onUpdateUser = {onUpdateUser} onSaveUser = {onSaveUser}/>
+                <hr/>
+                <Table tickets={tickets} rowEvents = {ticketsRowEvents}/>
+                <UpdateModal show = {showTicketModal} closeModal = {closeTicketModal} ticket = {selectedTicket} onUpdateTicket = {onUpdateTicket} onSaveTicket = {onSaveTicket}/>
             </div>
         </div>
     );

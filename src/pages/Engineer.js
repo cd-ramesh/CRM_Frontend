@@ -3,7 +3,8 @@ import Sidebar from "../components/sidebar/sidebar";
 import { userType, userFields }  from "../constant";
 import { getAllTickets } from "../api/Tickets.api";
 import { Cards } from "../components/cards/card";
-import { Table } from "../components/table/table";
+import { Table } from "../components/table/ticketsTable";
+
 
 
 function Engineer(){

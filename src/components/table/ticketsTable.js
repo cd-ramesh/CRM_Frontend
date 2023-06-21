@@ -37,6 +37,8 @@ export function Table(props){
         alwaysShowAllBtns: true,
     });
 
+    const CaptionElement = () => <h4 style={{textAlign: 'center', color: "black"}}>TICKETS</h4>;
+
     return (
         <div className="row">
             <BootstrapTable
@@ -47,7 +49,8 @@ export function Table(props){
             columns={columns} 
             pagination={pagination} 
             filter={filterFactory()}
-            rowEvents={rowEvents}/>
+            rowEvents={rowEvents}
+            caption={<CaptionElement/>}/>
         </div>
     );
 } 
