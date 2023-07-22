@@ -1,37 +1,19 @@
-import { useEffect, useState } from "react";
 import Sidebar from "../components/sidebar/sidebar";
-import { userType, userFields }  from "../constant";
-import { getAllTickets } from "../api/Tickets.api";
+import { userFields }  from "../constant";
 import { Cards } from "../components/cards/card";
 import { Table } from "../components/table/ticketsTable";
+import useFetchTickets from "../hooks/fetchTickets";
+import useUpdateTickets from "../hooks/updateTickets";
+import { UpdateModal } from "../components/modal/ticketModal";
 
 
 
 function Engineer(){
 
-    const [tickets, setTickets] = useState([]);
+    const tickets = useFetchTickets();
+    const {ticketsRowEvents, showTicketModal, closeTicketModal, selectedTicket, onUpdateTicket, onSaveTicket} = useUpdateTickets();
 
     const name = localStorage.getItem(userFields.name);
-    const type = localStorage.getItem(userFields.userType);
-
-    
-    useEffect(()=>{
-        getAllTickets()
-        .then((res)=>{
-            setTickets(res.data);
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
-    },[]);
-
-    if(type !== userType.engineer){
-        return(
-            <div>
-                <h1>Unauthorized</h1>
-            </div>
-        );
-    }
 
     return (
         <div className="row bg-light">
@@ -43,7 +25,8 @@ function Engineer(){
                 <p className="text-center text-muted">Efficiently handle raised tickets, collaborate with your team, and provide timely resolutions to customer issues.</p>
                 <Cards tickets={tickets}/>
                 <hr/>
-                <Table tickets={tickets}/>
+                <Table tickets={tickets} rowEvents = {ticketsRowEvents}/>
+                <UpdateModal show = {showTicketModal} closeModal = {closeTicketModal} ticket = {selectedTicket} onUpdateTicket = {onUpdateTicket} onSaveTicket = {onSaveTicket}/>
             </div>
         </div>
     );
