@@ -19,3 +19,11 @@ export async function updateTicketById(ticket){
     });
 }
 
+export async function createTicket(ticket){
+    return axios.post(`${BASE_URL}/api/v1/tickets`,ticket,{
+        headers:{
+            "Authorization" : localStorage.getItem(userFields.jwtToken)
+        },
+    });
+}
+

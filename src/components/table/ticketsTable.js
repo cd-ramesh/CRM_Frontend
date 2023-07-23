@@ -37,7 +37,7 @@ export function Table(props){
         alwaysShowAllBtns: true,
     });
 
-    const CaptionElement = () => <h4 style={{textAlign: 'center', color: "black"}}>TICKETS</h4>;
+    const CaptionElement = () => <h4 style={{textAlign: 'center', color: "black"}}>TICKETS RAISED</h4>;
 
     return (
         <div className="row">
