@@ -26,7 +26,7 @@ function useUpdateTickets(){
         updateTicketById(selectedTicket)
         .then((res)=>{
             setShowTicketModal(false);
-            window.location.href = `/${localStorage.getItem(userFields.userType.toLocaleLowerCase())}`;
+            window.location.href = `/${localStorage.getItem(userFields.userType).toLocaleLowerCase()}`;
         })
         .catch((err)=>{
             console.log(err);

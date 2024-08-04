@@ -27,7 +27,7 @@ function useUpdateUsers(){
         updateUserById(selectedUser)
         .then((res)=>{
             setShowUserModal(false);
-            window.location.href = `/${localStorage.getItem(userFields.userType.toLocaleLowerCase())}`;
+            window.location.href = `/${localStorage.getItem(userFields.userType).toLocaleLowerCase()}`;
         })
         .catch((err)=>{
             console.log(err);
