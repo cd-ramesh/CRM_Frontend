@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { userFields } from '../constant';
 
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = "https://crm-api-jlzn.onrender.com";
 
 export async function getAllTickets(){
     return axios.get(`${BASE_URL}/api/v1/tickets`,{
