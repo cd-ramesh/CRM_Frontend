@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import './Modal.css';
 import { userStatus } from '../../constant';
 
 export function UpdateUserModal(props) {
@@ -20,22 +19,22 @@ export function UpdateUserModal(props) {
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Name</span>
                         <input className="px-2 ip" type="text" name="name" disabled
-                        defaultValue={user.name} onChange={props.onUpdateUser}/>
+                        defaultValue={user.name} onChange={props.onUpdateUser} style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>@Username</span>
                         <input className="px-2 ip" type="text" name="userId" disabled
-                        defaultValue={user.userId} onChange={props.onUpdateUser} />
+                        defaultValue={user.userId} onChange={props.onUpdateUser} style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Email</span>
                         <input className="px-2 ip" type="email" name="email" disabled
-                        defaultValue={user.email} onChange={props.onUpdateUser} style={{width: "20rem"}}/>
+                        defaultValue={user.email} onChange={props.onUpdateUser} style={{width: "20rem", border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>User Type</span>
                         <input className="px-2 ip" type="text" name="userType" disabled 
-                        defaultValue={user.userType} onChange={props.onUpdateUser}/>
+                        defaultValue={user.userType} onChange={props.onUpdateUser} style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>User Status</span>

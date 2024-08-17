@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import './Modal.css'
 import { fetchDisabledTicketFields } from '../../utils/fetchDisabledFields';
 import { ticketStatus } from '../../constant';
 
@@ -21,23 +20,26 @@ export function UpdateModal(props) {
                 <form>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Title</span>
-                        <input className="px-2 ip" type="text" name="title" disabled={disabledFields.title}
-                        defaultValue={ticket.title} style={{width: "20rem"}} onChange={props.onUpdateTicket}/>
+                        <input className="px-2 ip" type="text" name="title" disabled={disabledFields.title} defaultValue={ticket.title} 
+                        style={{width: "20rem", border: "1px solid #B2B2B2", color: "#555555"}} onChange={props.onUpdateTicket}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Priority</span>
                         <input className="px-2 ip" type="number" name="ticketPriority" disabled={disabledFields.priority}
-                        defaultValue={ticket.ticketPriority} autoComplete="off" onChange={props.onUpdateTicket} />
+                        defaultValue={ticket.ticketPriority} autoComplete="off" onChange={props.onUpdateTicket} 
+                        style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Requester</span>
                         <input className="px-2 ip" type="text" name="requester" disabled={disabledFields.requester} 
-                        defaultValue={ticket.requester} autoComplete="off" onChange={props.onUpdateTicket} />
+                        defaultValue={ticket.requester} autoComplete="off" onChange={props.onUpdateTicket} 
+                        style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Assignee</span>
                         <input className="px-2 ip" type="text" name="assignee" disabled={disabledFields.assignee}
-                        defaultValue={ticket.assignee} autoComplete="off" onChange={props.onUpdateTicket}/>
+                        defaultValue={ticket.assignee} autoComplete="off" onChange={props.onUpdateTicket}
+                        style={{border: "1px solid #B2B2B2", color: "#555555"}}/>
                     </div>
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Status</span>
@@ -52,7 +54,8 @@ export function UpdateModal(props) {
                     <div className='input-group mb-3'>
                         <span className='input-group-text'>Description</span>
                         <textarea className="px-2 ip" name="description" disabled={disabledFields.description}
-                        defaultValue={ticket.description} cols="40" onChange={props.onupdateTicket}/> 
+                        defaultValue={ticket.description} cols="40" onChange={props.onupdateTicket}
+                        style={{border: "1px solid #B2B2B2", color: "#555555"}}/> 
                     </div>
                 </form>
             </Modal.Body>
